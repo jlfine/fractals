@@ -1,0 +1,65 @@
+---
+title: "Fibonacci numbers and the Golden ratio"
+author: "Jacob L. Fine"
+date: "June 13th, 2024"
+output: html_document
+---
+
+The Fibonacci sequence is a sequence of numbers such that each term is the sum of the two previous terms.
+
+It can be shown that the golden_ratio between the nth and n-1th term approaches a constant, known as the Golden ratio ($\phi$), which is exactly equal to $\phi = \frac{1+\sqrt{5}}2$. We will derive this from the definition of the Fibonacci sequence and then compute it empircally.
+
+We start with the definition of the Fibonacci sequence, where the $n$th term, $F_n$ is the sum of the previous two terms, so
+
+$$F_n = F_{n-1}+F_{n-2}$$
+
+At arbitarily large values of n, the ratio between a given pair of terms and the next pair of terms will equal the golden ratio, so
+
+$$\phi =  \frac{F_n}{F_{n-1}}=\frac{F_{n-1}}{F_{n-2}}$$
+We just substitute $F_n = F_{n-1}+F_{n-2}$ to obtain
+
+$$\implies \frac{F_{n-1}+F_{n-2}
+}{F_{n-1}}=\frac{F_{n-1}}{F_{n-2}}$$
+
+$$\implies 1+ \frac{F_{n-2}}{F_{n-1}}-\frac{F_{n-1}}{F_{n-2}}=0$$
+Now, we use that $\phi = \frac{F_{n-1}}{F_{n-2}}$ to rewrite the above as
+$$\implies 1+ \frac{1}{\phi}-\phi=0$$
+We just multiply through by $\phi$ to make the equation solvable using the quadratic formula:
+
+$$\implies \phi + 1-\phi^2=0$$
+$$\implies \phi^2 - \phi - 1=0$$
+Therefore, since $\phi$ must be positive, we have that
+
+$$\phi = \frac{1 + \sqrt{5}}{2}$$
+We will now estimate this numerically using R, and compare our computations to the true value.
+
+```{r}
+# A function that computes the golden_ratio after n iterations
+compute_golden_ratio <- function(n) {
+  golden_ratio <- numeric(n)
+  # initializes the golden_ratio as 1
+  golden_ratio[1] <- 1
+  # goes up until n, and computes the golden_ratio estimate as the golden_ratio between the current term and the previous term
+  for (i in 2:n) {
+    golden_ratio[i] <- 1 + 1 / golden_ratio[i - 1]
+  }
+  # returns the golden ratio
+  return(golden_ratio)
+}
+
+# calculates the golden_ratio after 20 terms
+n <- 30
+golden_ratio_seq <- compute_golden_ratio(n)
+
+# Plotting the computed golden ratio against the true golden ratio
+true_golden_ratio <- (1 + sqrt(5)) / 2
+plot(1:n, golden_ratio_seq, type = "l", col = "blue", ylim = c(1.5, 2), 
+     xlab = "Number of terms", ylab = "Golden ratio value")
+abline(h = true_golden_ratio, col = "red", lty = 2)
+legend("bottomright", legend = c("Golden ratio (Estimate)", "Golden ratio (True)"), 
+       col = c("blue", "red"), lty = c(1, 2), cex = 0.8)
+
+
+```
+
+
