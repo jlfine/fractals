@@ -13,7 +13,7 @@ We start with the definition of the Fibonacci sequence, where the $n$th term, $F
 
 $$F_n = F_{n-1}+F_{n-2}$$
 
-At arbitarily large values of n, the ratio between a given pair of terms and the next pair of terms will equal the golden ratio, so
+At arbitarily large values of $n$, the ratio between a given pair of terms and the next pair of terms will equal the golden ratio, so
 
 $$\phi =  \frac{F_n}{F_{n-1}}=\frac{F_{n-1}}{F_{n-2}}$$
 We just substitute $F_n = F_{n-1}+F_{n-2}$ to obtain
