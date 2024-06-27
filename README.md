@@ -1,5 +1,5 @@
 # Fractals
-Code-generated fractals and related mathematical content, topics include:
+Code-generated fractals and related mathematical content. Topics include:
 
 -  Mandlebrot set
 -  Sierpinski's triangle
