@@ -392,7 +392,7 @@ compute_golden_ratio &lt;- function(n) {
   golden_ratio &lt;- numeric(n)
   # initializes the golden_ratio as 1
   golden_ratio[1] &lt;- 1
-  # goes up until n, and computes the golden_ratio estimate as the golden_ratio between the current term and the previous term
+  # goes up until n, and computes the golden_ratio estimate as the ratio between the current term and the previous term
   for (i in 2:n) {
     golden_ratio[i] &lt;- 1 + 1 / golden_ratio[i - 1]
   }
